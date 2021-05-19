@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 #include <iostream>
 #include <math.h>
 
@@ -53,29 +49,8 @@ public:
 		segTree[si] = HashF(ll, rr);
 		return segTree[si];
 	}
-	int FRM_Recur(int qs, int qe, int ss, int se, int index = 0)
-	{
-		if (qs <= ss && qe >= se)
-			return segTree[index];
+	
 
-		if (se < qs || ss > qe)
-			return 0;
-
-		int mid = ss / 2 + se / 2;
-		int ll = FRM_Recur(qs, qe, ss, mid, 2 * index + 1);
-		int rr = FRM_Recur(qs, qe, mid + 1, se, 2 * index + 2);
-		return HashF(ll, rr);
-	}
-	int Func_RangeHash(int qs, int qe)
-	{
-		if (qs < 0 || qe > N - 1 || qs > qe)
-		{
-			cout << "\n\nInvalid Input\n\n";
-			return -1;
-		}
-
-		return FRM_Recur(qs, qe, 0, N - 1, 0);
-	}
 	void Show()
 	{
 		int start = 0, end = (int)(ceil(log2(N)));
